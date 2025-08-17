@@ -1,0 +1,28 @@
+{
+  "name": "ccclaude",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "build": "echo \"No build needed for this project\"",
+    "package": "zip -r todo-app.zip . -x 'node_modules/*' '.git/*' '*.log'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["todo", "koa2", "mysql"],
+  "author": "",
+  "license": "ISC",
+  "description": "Simple Todo App with Koa2 and MySQL",
+  "dependencies": {
+    "koa": "^2.14.2",
+    "koa-router": "^12.0.0",
+    "koa-bodyparser": "^4.4.1",
+    "koa-cors": "^0.0.16",
+    "koa-static": "^5.0.0",
+    "mysql2": "^3.6.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
