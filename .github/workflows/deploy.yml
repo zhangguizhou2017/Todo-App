@@ -27,9 +27,32 @@ jobs:
     - name: 安装依赖
       run: npm ci
     
-    # 4. 运行测试（如果有的话）
-    # - name: 运行测试
-    #   run: npm test
+    # 4. 调试 - 验证 Secrets 是否可用
+    - name: 调试 - 验证 GitHub Secrets
+      run: |
+        echo "=== 调试 GitHub Secrets ==="
+        echo "SERVER_HOST 长度: ${#SERVER_HOST}"
+        echo "SERVER_USER 长度: ${#SERVER_USER}" 
+        echo "SERVER_PORT 长度: ${#SERVER_PORT}"
+        echo "SERVER_SSH_KEY 长度: ${#SERVER_SSH_KEY}"
+        echo "SERVER_HOST 前10个字符: ${SERVER_HOST:0:10}"
+        echo "SERVER_USER 内容: ${SERVER_USER}"
+        echo "SERVER_PORT 内容: ${SERVER_PORT}"
+        if [ -n "$SERVER_HOST" ]; then
+          echo "✅ SERVER_HOST 可用"
+        else
+          echo "❌ SERVER_HOST 为空或未定义"
+        fi
+        if [ -n "$SERVER_SSH_KEY" ]; then
+          echo "✅ SERVER_SSH_KEY 可用"
+        else
+          echo "❌ SERVER_SSH_KEY 为空或未定义"
+        fi
+      env:
+        SERVER_HOST: ${{ secrets.SERVER_HOST }}
+        SERVER_USER: ${{ secrets.SERVER_USER }}
+        SERVER_PORT: ${{ secrets.SERVER_PORT }}
+        SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
     
     # 5. 部署到服务器
     - name: 部署到服务器
