@@ -38,6 +38,9 @@ jobs:
         echo "SERVER_HOST 前10个字符: ${SERVER_HOST:0:10}"
         echo "SERVER_USER 内容: ${SERVER_USER}"
         echo "SERVER_PORT 内容: ${SERVER_PORT}"
+        echo "测试变量 REPO_NAME: ${REPO_NAME}"
+        echo "测试变量 RUNNER_USER: ${RUNNER_USER}"
+        echo "测试变量 TEST_HOST: ${TEST_HOST}"
         if [ -n "$SERVER_HOST" ]; then
           echo "✅ SERVER_HOST 可用"
         else
@@ -53,6 +56,10 @@ jobs:
         SERVER_USER: ${{ secrets.SERVER_USER }}
         SERVER_PORT: ${{ secrets.SERVER_PORT }}
         SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+        # 测试用变量
+        TEST_HOST: ${{ vars.TEST_HOST }}
+        REPO_NAME: ${{ github.repository }}
+        RUNNER_USER: ${{ github.actor }}
     
     # 5. 部署到服务器
     - name: 部署到服务器
