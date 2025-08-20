@@ -89,7 +89,7 @@ chmod +x /www/wwwroot/todo-app/deploy.sh
 # 在本地项目目录
 git add .
 git commit -m "feat: 添加 GitHub Actions 自动部署配置"
-git push origin main
+git push origin main 
 ```
 
 ### 2. 查看 Actions 执行
