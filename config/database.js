@@ -11,6 +11,7 @@ const config = {
     queueLimit: 0
 };
 
+
 const pool = mysql.createPool(config);
 
 async function initDatabase() {
