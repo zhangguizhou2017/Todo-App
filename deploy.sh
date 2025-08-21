@@ -21,15 +21,19 @@ error_exit() {
     exit 1
 }
 
-log "📁 检查项目目录..."
-if [ ! -d "$PROJECT_DIR" ]; then
-    error_exit "项目目录不存在: $PROJECT_DIR"
+log "🗑️ 清理旧版本..."
+if [ -d "$PROJECT_DIR" ]; then
+    log "删除旧项目目录: $PROJECT_DIR"
+    rm -rf "$PROJECT_DIR"
 fi
 
-cd "$PROJECT_DIR" || error_exit "无法进入项目目录"
+log "📁 创建项目目录..."
+mkdir -p "$(dirname "$PROJECT_DIR")"
 
-log "📥 拉取最新代码..."
-git pull origin main || error_exit "Git 拉取失败"
+log "📥 克隆最新代码..."
+git clone https://github.com/zhangguizhou2017/Todo-App.git "$PROJECT_DIR" || error_exit "Git 克隆失败"
+
+cd "$PROJECT_DIR" || error_exit "无法进入项目目录"
 
 log "📦 备份旧的 node_modules..."
 if [ -d "node_modules" ]; then
