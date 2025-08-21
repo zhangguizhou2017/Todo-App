@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Todo App 自动部署脚本
-# 用法: ./deploy.sh
 
 set -e  # 遇到错误立即停止
 
