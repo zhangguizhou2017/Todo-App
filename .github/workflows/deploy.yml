@@ -40,6 +40,26 @@ jobs:
           git clone https://github.com/zhangguizhou2017/Todo-App.git todo-app
           cd todo-app
           
+          # 创建环境配置文件
+          echo "⚙️ 创建环境配置文件..."
+          cat > .env << EOF
+          NODE_ENV=production
+          
+          # 数据库配置
+          DB_HOST=localhost
+          DB_PORT=3306
+          DB_USER=${{ secrets.DB_USER }}
+          DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+          DB_NAME=todoapp
+          
+          # API 密钥配置
+          API_KEYS=${{ secrets.API_KEYS }}
+          REQUIRE_AUTH=false
+          
+          # CORS 配置
+          ALLOWED_ORIGINS=*
+          EOF
+          
           # 安装/更新依赖
           echo "📦 安装主应用依赖..."
           npm ci --production
