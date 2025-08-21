@@ -23,16 +23,22 @@ jobs:
         script: |
           echo "🚀 开始部署..."
           
-          # 进入项目目录
-          cd /www/wwwroot/todo-app
+          # 删除旧版本
+          echo "🗑️ 清理旧版本..."
+          if [ -d "/www/wwwroot/todo-app" ]; then
+            echo "删除旧项目目录..."
+            rm -rf /www/wwwroot/todo-app
+          fi
           
-          # 显示当前状态
-          echo "📍 当前目录: $(pwd)"
-          echo "📋 当前分支: $(git branch --show-current)"
+          # 创建项目目录
+          echo "📁 创建项目目录..."
+          mkdir -p /www/wwwroot
           
-          # 拉取最新代码
-          echo "📥 拉取最新代码..."
-          git pull origin main
+          # 克隆最新代码
+          echo "📥 克隆最新代码..."
+          cd /www/wwwroot
+          git clone https://github.com/zhangguizhou2017/Todo-App.git todo-app
+          cd todo-app
           
           # 安装/更新依赖
           echo "📦 安装主应用依赖..."
